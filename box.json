@@ -1,0 +1,46 @@
+{
+    "chmod": "0755",
+    "directories": [
+    ],
+    "files": [
+        "LICENSE",
+        "vendor/autoload.php",
+        "bladephp/config.php"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": ["Tests"],
+            "in": "vendor/illuminate"
+        },
+        {
+            "name": "*.php",
+            "exclude": ["Tests", "Tester", "Resources"],
+            "in": "vendor/symfony"
+        },
+        {
+            "name": "*.php",
+            "exclude": [],
+            "in": "vendor/composer"
+        },
+        {
+            "name": "*.php",
+            "exclude": ["tests"],
+            "in": "vendor/phpseclib"
+        },
+        {
+            "name": "*.php",
+            "exclude": ["tests"],
+            "in": "vendor/herrera-io"
+        },
+        {
+            "name": "*.php",
+            "exclude": ["tests"],
+            "in": "vendor/philo"
+        }
+    ],
+    "git-version": "0.1.0a",
+    "main": "bladephp/blade",
+    "output": "bin/blade.phar",
+    "stub": true
+}

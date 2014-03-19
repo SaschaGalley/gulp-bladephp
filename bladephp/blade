@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Philo\Blade\Blade;
+
+$cwd = realpath(getcwd());
+$cwd = dirname ( __FILE__ );
+
+$arguments = array('cwd' => FALSE, 'tmpl' => FALSE);
+
+foreach ($argv as $arg)
+{
+    $e = explode("=", $arg);
+
+    $e[0] = ltrim($e[0], '--');
+
+    if (count($e)==2 && array_key_exists($e[0], $arguments))
+    {
+        $arguments[$e[0]]=$e[1];
+    }
+}
+
+$cwd = $arguments['cwd'];
+
+// include default config
+$options = require 'config.php';
+
+// if it exists, also include config from working directory
+if (file_exists(getcwd().'/config.php'))
+{
+    $custom_options = include $cwd.'/config.php';
+    $options = array_merge($options, $custom_options);
+}
+
+$blade = new Blade($options['blade']['views'], $options['blade']['cache']);
+
+$tmpl_name = str_replace(array('.blade.php', $options['blade']['views'].'/'), '', $arguments['tmpl']);
+
+echo $blade->view()->make($tmpl_name, $options['variables']);
