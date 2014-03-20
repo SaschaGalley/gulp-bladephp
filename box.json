@@ -5,7 +5,7 @@
     "files": [
         "LICENSE",
         "vendor/autoload.php",
-        "bladephp/config.php"
+        "config.php"
     ],
     "finder": [
         {
@@ -40,7 +40,7 @@
         }
     ],
     "git-version": "0.1.0a",
-    "main": "bladephp/blade",
+    "main": "blade",
     "output": "bin/blade.phar",
     "stub": true
 }

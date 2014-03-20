@@ -1,0 +1,26 @@
+{
+    "name": "gulp-bladephp",
+
+    "config": {
+        "vendor-dir": "vendor",
+        "preferred-install": "dist"
+    },
+
+    "require": {
+        "php": ">=5.3.0",
+        "philo/laravel-blade": "dev-master",
+        "kherge/box": "~2.4"
+    },
+
+    "minimum-stability": "dev",
+
+    "scripts": {
+        "post-install-cmd": [
+            "php vendor/kherge/box/bin/box build"
+        ],
+        "post-update-cmd": [
+            "php vendor/kherge/box/bin/box build"
+        ]
+    }
+
+}

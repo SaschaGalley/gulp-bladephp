@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use Philo\Blade\Blade;
 
@@ -34,8 +34,13 @@ if (file_exists(getcwd().'/config.php'))
     $options = array_merge($options, $custom_options);
 }
 
-$blade = new Blade($options['blade']['views'], $options['blade']['cache']);
+foreach ($options['boot'] as $file)
+{
+    require($file);
+}
 
-$tmpl_name = str_replace(array('.blade.php', $options['blade']['views'].'/'), '', $arguments['tmpl']);
+$blade = new Blade($options['views'], $options['cache']);
+
+$tmpl_name = str_replace(array('.blade.php', $options['views'].'/'), '', $arguments['tmpl']);
 
 echo $blade->view()->make($tmpl_name, $options['variables']);
