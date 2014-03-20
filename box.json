@@ -39,7 +39,7 @@
             "in": "vendor/philo"
         }
     ],
-    "git-version": "0.1.0a",
+    "git-version": "0.1.0",
     "main": "blade",
     "output": "bin/blade.phar",
     "stub": true

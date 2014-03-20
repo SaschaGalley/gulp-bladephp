@@ -8,10 +8,16 @@ module.exports = function (options) {
 
   return map(function (file, cb) {
 
-    cp.exec('php node_modules/gulp-bladephp/bin/blade.phar --cwd='+process.cwd()+' --tmpl='+file.path, function (error, stdout, stderr) {
+    cp.exec('blade --cwd='+process.cwd()+' --tmpl='+file.path, function (error, stdout, stderr) {
+
         var output =  stdout;
+
+        if (stderr !== null && stderr !== 'null' && stderr) {
+          gutil.log(gutil.colors.red('PHP Error: ' + stderr));
+        }
+
         if (error !== null) {
-          gutil.log('exec error: ' + error);
+          gutil.log(gutil.colors.red('Exec error: ' + error));
         }
 
         var newFile = new gutil.File({
@@ -22,6 +28,7 @@ module.exports = function (options) {
         });
 
         cb(null, newFile);
+
     });
 
   });

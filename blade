@@ -5,9 +5,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Philo\Blade\Blade;
 
-$cwd = realpath(getcwd());
-$cwd = dirname ( __FILE__ );
-
 $arguments = array('cwd' => FALSE, 'tmpl' => FALSE);
 
 foreach ($argv as $arg)
@@ -28,7 +25,7 @@ $cwd = $arguments['cwd'];
 $options = require 'config.php';
 
 // if it exists, also include config from working directory
-if (file_exists(getcwd().'/config.php'))
+if (file_exists($cwd.'/config.php'))
 {
     $custom_options = include $cwd.'/config.php';
     $options = array_merge($options, $custom_options);
@@ -43,4 +40,10 @@ $blade = new Blade($options['views'], $options['cache']);
 
 $tmpl_name = str_replace(array('.blade.php', $options['views'].'/'), '', $arguments['tmpl']);
 
-echo $blade->view()->make($tmpl_name, $options['variables']);
+$variables = $options['global_variables'];
+if (array_key_exists($tmpl_name, $options['template_variables']))
+{
+    $variables = array_merge($variables, $options['template_variables'][$tmpl_name]);
+}
+
+echo $blade->view()->make($tmpl_name, $variables);

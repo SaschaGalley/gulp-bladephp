@@ -1,7 +1,7 @@
 {
   "name": "gulp-bladephp",
   "description": "blade (laravel) template engine",
-  "version": "0.1.0a",
+  "version": "0.1.0",
   "author": {
     "name": "Sascha Galley",
     "url": "http://xash.at"
@@ -16,8 +16,7 @@
   "main": "index.js",
   "dependencies": {
     "gulp-util": "~2.2.0",
-    "map-stream": "~0.1.0",
-    "laravel-blade": "PhiloNL/Laravel-Blade"
+    "map-stream": "~0.1.0"
   },
   "bin": {
     "blade": "./bin/blade.phar"
